@@ -131,6 +131,8 @@ server <- function(input, output, session) {
   # Reactive value to store history
   history_data <- reactiveVal(
     data.frame(
+      Exp = numeric(0),
+      
       Binder = numeric(0),
       Disintegrant_level = numeric(0),
       Compaction_force = numeric(0),
@@ -251,8 +253,7 @@ server <- function(input, output, session) {
   # Render history table
   output$history_table <- renderDT({
     req(nrow(history_data()) > 0)
-    datatable(history_data(), 
-              
+    datatable(history_data(),
               options = list(pageLength = 5, 
                              autoWidth = TRUE,
                              scrollX = TRUE,
