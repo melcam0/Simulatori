@@ -1,5 +1,21 @@
+if(!nzchar(system.file(package = "shiny"))) install.packages("shiny")
+if(!nzchar(system.file(package = "bslib"))) install.packages("bslib")
+if(!nzchar(system.file(package = "shinyWidgets"))) install.packages("shinyWidgets")
+if(!nzchar(system.file(package = "bslib"))) install.packages("bslib")
+if(!nzchar(system.file(package = "dplyr"))) install.packages("dplyr")
+if(!nzchar(system.file(package = "DT"))) install.packages("DT")
+if(!nzchar(system.file(package = "openxlsx"))) install.packages("openxlsx")
+
 library(shiny)
 library(bslib)
+library(shinyWidgets)
+library(bslib)
+library(dplyr)
+library(DT)
+library(openxlsx)
+
+options(warn = -1)
+options(shiny.maxRequestSize = 30 * 1024 ^ 2)
 
 # Source the module files
 source("OralDisintTabletModule.R")

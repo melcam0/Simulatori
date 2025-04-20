@@ -1,11 +1,4 @@
-library(shiny)
-library(shinyWidgets)
-library(bslib)
-library(dplyr)
-library(DT)
-library(openxlsx)
-
-# UI Module
+# ui Module
 OralDisintTablet_ui <- function(id) {
   ns <- NS(id)
   
