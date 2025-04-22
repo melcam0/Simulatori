@@ -111,8 +111,8 @@ nav_panel(
 # Main application server logic
 server <- function(input, output, session) {
   # Call the module server functions with their respective IDs
-  OralDisintTablet_Server("odt")
-  ReazDegradForzataModule_Server("rdf")
+  OralDisintTablet_server("odt")
+  ReazDegradForzataModule_server("rdf")
 }
 
 # Run the application
