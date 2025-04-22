@@ -37,14 +37,39 @@ ui <- page_navbar(
   #   module2_ui("app2")
   # ),
   
-  nav_panel(
-    title = "About",
-    card(
-      card_header("About Simulators"),
-      p("This application integrates two separate Shiny apps into a single interface using Shiny modules."),
-      p("Use the navigation bar above to switch between the different applications.")
+nav_panel(
+  title = "About",
+  layout_columns(
+    # Prima riga: due card affiancate
+    layout_columns(
+      col_width = 6,
+      card(
+        card_header("About Simulators"),
+        p("This application integrates two separate Shiny apps into a single interface using Shiny modules."),
+        p("Use the navigation bar above to switch between the different applications.")
+      ),
+      card(
+        card_header("How to Use"),
+        p("Navigate between the different simulators using the tabs at the top of the page."),
+        p("Each simulator has its own inputs and outputs that operate independently.")
+      )
+    ),
+    # Seconda riga: altre due card affiancate
+    layout_columns(
+      col_width = 6,
+      card(
+        card_header("Features"),
+        p("These simulators provide interactive visualizations for complex statistical concepts."),
+        p("They are designed to be educational and user-friendly.")
+      ),
+      card(
+        card_header("Contact"),
+        p("For questions or feedback about these simulators, please contact us."),
+        p("Email: example@example.com")
+      )
     )
-  ),
+  )
+),
   
   
   nav_spacer(),
@@ -71,7 +96,7 @@ ui <- page_navbar(
   # 
   card(
     footer = TRUE,
-    " Version 1.0",
+    " Version 1.1",
     # HTML((paste(" "," ","Giorgio Marrubini","email: giorgio.marrubini@unipv.it",
     #             " ",
     #             'Camillo Melzi','email: camillomelzi@gmail.com',sep="<br/>"))),

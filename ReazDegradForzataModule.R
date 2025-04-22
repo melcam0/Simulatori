@@ -181,49 +181,49 @@ ReazDegradForzataModule_Server <- function(id) {
       
       
       # Factor effects for Response 1 
-      x1_effect1 <- 1 * x1
-      x2_effect1 <- 1 * x2
-      x3_effect1 <- 1 * x3
-      x4_effect1 <- 1 * x4
-      x5_effect1 <- 1 * x5
-      x6_effect1 <- 0 * x6
-      x7_effect1 <- 1 * x7
-      x8_effect1 <- 0 * x8
-      x9_effect1 <- 0 * x9
+      x1_effect1 <- -2.9 * x1
+      x2_effect1 <- -3.2 * x2
+      x3_effect1 <- -1.07 * x3
+      x4_effect1 <- -0.25 * x4
+      x5_effect1 <- -1.025 * x5
+      x6_effect1 <- 0.075 * x6
+      x7_effect1 <- 0.045 * x7
+      x8_effect1 <- -0.0475 * x8
+      x9_effect1 <- 0.35 * x9
       
-      x11_effect1 <- 1 * x1^2
-      x22_effect1 <- 1 * x2^2
-      x44_effect1 <- 1 * x4^2
-      x55_effect1 <- 1 * x5^2
+      x11_effect1 <- 0 * x1^2
+      x22_effect1 <- 0 * x2^2
+      x44_effect1 <- 0 * x4^2
+      x55_effect1 <- 0 * x5^2
       x66_effect1 <- 0 * x6^2
       
-      x12_effect1 <- 1 * x1*x2
-      x13_effect1 <- 1 * x1*x3
-      x14_effect1 <- 1 * x1*x4
-      x15_effect1 <- 1 * x1*x5
-      x16_effect1 <- 0 * x1*x6
-      x17_effect1 <- 1 * x1*x7
+      x12_effect1 <- -1.8 * x1*x2
+      x13_effect1 <- 0 * x1*x3
+      x14_effect1 <- 0.05 * x1*x4
+      x15_effect1 <- 0.85 * x1*x5
+      x16_effect1 <- 0.075 * x1*x6
+      x17_effect1 <- 0 * x1*x7
       x18_effect1 <- 0 * x1*x8
       x19_effect1 <- 0 * x1*x9
       
-      x23_effect1 <- 1 * x2*x3
-      x24_effect1 <- 1 * x2*x4
-      x25_effect1 <- 1 * x2*x5
+      x23_effect1 <- 0 * x2*x3
+      x24_effect1 <- 0 * x2*x4
+      x25_effect1 <- 0 * x2*x5
       x26_effect1 <- 0 * x2*x6
-      x27_effect1 <- 1 * x2*x7
+      x27_effect1 <- 0 * x2*x7
       x28_effect1 <- 0 * x2*x8
       x29_effect1 <- 0 * x2*x9
       
-      x34_effect1 <- 1 * x3*x4
-      x35_effect1 <- 1 * x3*x5
+      x34_effect1 <- 0 * x3*x4
+      x35_effect1 <- 0 * x3*x5
       x36_effect1 <- 0 * x3*x6
-      x37_effect1 <- 1 * x3*x7
+      x37_effect1 <- 0 * x3*x7
       x38_effect1 <- 0 * x3*x8
       x39_effect1 <- 0 * x3*x9
       
-      x45_effect1 <- 1 * x4*x5
+      x45_effect1 <- 0 * x4*x5
       x46_effect1 <- 0 * x4*x6
-      x47_effect1 <- 1 * x4*x7
+      x47_effect1 <- 0 * x4*x7
       x48_effect1 <- 0 * x4*x8
       x49_effect1 <- 0 * x4*x9
       
@@ -232,7 +232,7 @@ ReazDegradForzataModule_Server <- function(id) {
       x58_effect1 <- 0 * x5*x8
       x59_effect1 <- 0 * x5*x9
       
-      x67_effect1 <- 1 * x6*x7
+      x67_effect1 <- 0 * x6*x7
       x68_effect1 <- 0 * x6*x8
       x69_effect1 <- 0 * x6*x9
       
@@ -243,58 +243,58 @@ ReazDegradForzataModule_Server <- function(id) {
       
       
       # Factor effects for Response 2 
-      x1_effect2 <- 1 * x1
-      x2_effect2 <- 1 * x2
-      x3_effect2 <- 1 * x3
-      x4_effect2 <- 1 * x4
-      x5_effect2 <- 1 * x5
-      x6_effect2 <- 0 * x6
-      x7_effect2 <- 1 * x7
-      x8_effect2 <- 0 * x8
-      x9_effect2 <- 0 * x9
+      x1_effect2 <- -3.2 * x1
+      x2_effect2 <- -5.5 * x2
+      x3_effect2 <- -3.25 * x3
+      x4_effect2 <- 0.05 * x4
+      x5_effect2 <- -2.5 * x5
+      x6_effect2 <- 2.8 * x6
+      x7_effect2 <- 0.375 * x7
+      x8_effect2 <- 0.025 * x8
+      x9_effect2 <- 5.375 * x9
       
-      x11_effect2 <- 1 * x1^2
-      x22_effect2 <- 1 * x2^2
-      x44_effect2 <- 1 * x4^2
-      x55_effect2 <- 1 * x5^2
+      x11_effect2 <- 0 * x1^2
+      x22_effect2 <- 0 * x2^2
+      x44_effect2 <- 0 * x4^2
+      x55_effect2 <- 0 * x5^2
       x66_effect2 <- 0 * x6^2
       
-      x12_effect2 <- 1 * x1*x2
-      x13_effect2 <- 1 * x1*x3
-      x14_effect2 <- 1 * x1*x4
-      x15_effect2 <- 1 * x1*x5
-      x16_effect2 <- 0 * x1*x6
-      x17_effect2 <- 1 * x1*x7
+      x12_effect2 <- -0.665 * x1*x2
+      x13_effect2 <- 0 * x1*x3
+      x14_effect2 <- 0.56 * x1*x4
+      x15_effect2 <- 0.07 * x1*x5
+      x16_effect2 <- 0.03 * x1*x6
+      x17_effect2 <- 0 * x1*x7
       x18_effect2 <- 0 * x1*x8
       x19_effect2 <- 0 * x1*x9
       
-      x23_effect2 <- 1 * x2*x3
-      x24_effect2 <- 1 * x2*x4
-      x25_effect2 <- 1 * x2*x5
+      x23_effect2 <- 0 * x2*x3
+      x24_effect2 <- 0 * x2*x4
+      x25_effect2 <- 0 * x2*x5
       x26_effect2 <- 0 * x2*x6
-      x27_effect2 <- 1 * x2*x7
+      x27_effect2 <- 0 * x2*x7
       x28_effect2 <- 0 * x2*x8
       x29_effect2 <- 0 * x2*x9
       
-      x34_effect2 <- 1 * x3*x4
-      x35_effect2 <- 1 * x3*x5
+      x34_effect2 <- 0 * x3*x4
+      x35_effect2 <- 0 * x3*x5
       x36_effect2 <- 0 * x3*x6
-      x37_effect2 <- 1 * x3*x7
+      x37_effect2 <- 0 * x3*x7
       x38_effect2 <- 0 * x3*x8
       x39_effect2 <- 0 * x3*x9
       
-      x45_effect2 <- 1 * x4*x5
+      x45_effect2 <- 0 * x4*x5
       x46_effect2 <- 0 * x4*x6
-      x47_effect2 <- 1 * x4*x7
+      x47_effect2 <- 0 * x4*x7
       x48_effect2 <- 0 * x4*x8
       x49_effect2 <- 0 * x4*x9
       
       x56_effect2 <- 0 * x5*x6
-      x57_effect2 <- 1 * x5*x7
+      x57_effect2 <- 0 * x5*x7
       x58_effect2 <- 0 * x5*x8
       x59_effect2 <- 0 * x5*x9
       
-      x67_effect2 <- 1 * x6*x7
+      x67_effect2 <- 0 * x6*x7
       x68_effect2 <- 0 * x6*x8
       x69_effect2 <- 0 * x6*x9
       
@@ -306,7 +306,7 @@ ReazDegradForzataModule_Server <- function(id) {
       
       #
       # Calculate responses with some random noise
-      r1 <- 0 + x1_effect1 + x2_effect1 + x3_effect1 + x4_effect1 + x5_effect1 + x6_effect1 + x7_effect1 + x8_effect1 + x9_effect1 +
+      r1 <- 85.3 + x1_effect1 + x2_effect1 + x3_effect1 + x4_effect1 + x5_effect1 + x6_effect1 + x7_effect1 + x8_effect1 + x9_effect1 +
         x11_effect1 + x22_effect1 + x44_effect1 + x55_effect1 + x66_effect1 +
         x12_effect1 + x13_effect1 + x14_effect1 + x15_effect1 + x16_effect1 + x17_effect1 + x18_effect1 + x19_effect1 +
         x23_effect1 + x24_effect1 + x25_effect1 + x26_effect1 + x27_effect1 + x28_effect1 + x29_effect1 +
@@ -317,7 +317,7 @@ ReazDegradForzataModule_Server <- function(id) {
         x78_effect1 + x79_effect1 +
         x89_effect1 +
         rnorm(1, 0, 1)
-      r2 <- 0 + x1_effect2 + x2_effect2 + x3_effect2 + x4_effect2 + x5_effect2 + x6_effect2 + x7_effect2 + x8_effect2 + x9_effect2 +
+      r2 <- 83.5 + x1_effect2 + x2_effect2 + x3_effect2 + x4_effect2 + x5_effect2 + x6_effect2 + x7_effect2 + x8_effect2 + x9_effect2 +
         x11_effect2 + x22_effect2 + x44_effect2 + x55_effect2 + x66_effect2 +
         x12_effect2 + x13_effect2 + x14_effect2 + x15_effect2 + x16_effect2 + x17_effect2 + x18_effect2 + x19_effect2 +
         x23_effect2 + x24_effect2 + x25_effect2 + x26_effect2 + x27_effect2 + x28_effect2 + x29_effect2 +
@@ -336,11 +336,11 @@ ReazDegradForzataModule_Server <- function(id) {
       
       # Update displayed responses
       output$response1 <- renderText({
-        paste0(round(r1, 1), "%")
+        paste0(format(round(r1, 1), nsmall = 1), "%")
       })
       
       output$response2 <- renderText({
-        paste0(round(r2, 1), "%")
+        paste0(format(round(r2, 1), nsmall = 1), "%")
       })
       
       # Add to history
@@ -365,8 +365,8 @@ ReazDegradForzataModule_Server <- function(id) {
         Agitazione = input$x8,
         Quenching = input$x9,
         
-        Qta_API = round(r1, 1),
-        Bilancio_massa = round(r2, 1)
+        Qta_API = format(round(r1, 1), nsmall = 1),
+        Bilancio_massa = format(round(r2, 1), nsmall = 1)
       )
       
       history_data(rbind(new_row, current_data))
@@ -376,10 +376,11 @@ ReazDegradForzataModule_Server <- function(id) {
     output$history_table <- renderDT({
       req(nrow(history_data()) > 0)
       datatable(history_data(), 
-                options = list(pageLength = 5, 
+                options = list(pageLength = 10, 
                                autoWidth = TRUE,
                                scrollX = TRUE,
-                               order = list(list(0, 'asc')),  # Ordina per la colonna Exp (indice 0) in ordine crescente
+                               order = list(
+                                 list(0, 'desc')),  # Ordina per la colonna Exp (indice 0) in ordine discendente
                                columnDefs = list(
                                  list(className = 'dt-center', targets = "_all")
                                )),

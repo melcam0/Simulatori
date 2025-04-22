@@ -108,7 +108,7 @@ Standard Tablet Disintegration: For standard tablets, the European Medicines Age
 }
 
 # Server Module
-OralDisintTablet_Server <- function(id) {
+OralDisintTablet_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     
@@ -200,7 +200,7 @@ OralDisintTablet_Server <- function(id) {
       
       # Update displayed responses
       output$response1 <- renderText({
-        round(r1, 1)
+        format(round(r1, 1), nsmall = 1)
       })
       
       output$response2 <- renderText({
@@ -225,10 +225,8 @@ OralDisintTablet_Server <- function(id) {
         Binder_type  = input$x4,
         Disintegrant_type  = input$x5,
         
-        Dis_time  = round(r1, 1),
+        Dis_time  = format(round(r1, 1), nsmall = 1),
         Hardness  = round(r2, 0)
-        # Stabilità = round(r3, 1),
-        # Timestamp = format(Sys.time(), "%Y-%m-%d %H:%M:%S")
       )
       
       history_data(rbind(new_row, current_data))
@@ -237,11 +235,12 @@ OralDisintTablet_Server <- function(id) {
     # Render history table
     output$history_table <- renderDT({
       req(nrow(history_data()) > 0)
-      datatable(history_data(),
-                options = list(pageLength = 5, 
+      datatable(history_data(), 
+                options = list(pageLength = 10,
                                autoWidth = TRUE,
                                scrollX = TRUE,
-                               order = list(list(0, 'asc')),  # Ordina per la colonna Exp (indice 0) in ordine crescente
+                               order = list(
+                                 list(0, 'desc')),  # Ordina per la colonna Exp (indice 0) in ordine discendente
                                columnDefs = list(
                                  list(className = 'dt-center', targets = "_all")
                                )),
