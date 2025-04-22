@@ -123,7 +123,7 @@ Bassa temperatura e bassa concentrazione di acido: tempi lunghi, API che si degr
 }
 
 
-ReazDegradForzataModule_Server <- function(id) {
+ReazDegradForzataModule_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     
