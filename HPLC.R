@@ -81,8 +81,6 @@ simulate_chromatogram <- function(compounds, flow_rate, column_length,
     peaks[, i] <- peak_height * exp(-0.5 * ((time_points - rt_adjusted) / peak_width)^2)
     
     
-    
-    
     # Calculate peak area - numerical integration (approximately the sum of all points times the time step)
     Areas[i] <- sum(peaks[, i]) * (time_points[2] - time_points[1])
   }
@@ -165,20 +163,7 @@ ui <- page_navbar(
   nav_spacer(),
   nav_panel(
     title = "Simulator",
-    
     page_sidebar(
-      
-      
-      # class = "scrollable-page", # Aggiunta classe CSS
-      
-      
-      
-      
-      
-      
-      
-      
-      
       sidebar = sidebar(
         h4("Sample"),
         checkboxGroupInput("compounds", "Compounds",
@@ -222,29 +207,48 @@ ui <- page_navbar(
         sliderInput("temperature", "Temperature (°C)", 
                     min = 20, max = 50, value = 30, step = 1),
         
-        
-        
         actionButton("generate", "Data generator", class = "btn-primary btn-lg w-100 mt-3")
+        
+  
   
       ),
       
-      
-      
-      
       layout_columns(
-        
-        
         card(
-          # min_height = "400px",
+          min_height = "375px",
           card_header("Simulated Chromatogram"),
-          plotOutput("chromatogram_plot", height = "400px")
+          # plotOutput("chromatogram_plot", height = "400px")
           # style = "height: 500px; overflow-y: auto;"
+          
+          
+          conditionalPanel(
+            condition = "input.generate == 0",
+            div(
+              style = "color: #d9534f; font-weight: bold; border: 2px dashed #d9534f; padding: 15px; text-align: center; margin: 10px 0;",
+              "Press the 'Data generator' button to start the simulation."
+            )
+          ),
+          conditionalPanel(
+            condition = "input.generate > 0",
+            plotOutput("chromatogram_plot")
+          )
         ),
         
         card(
-          # min_height = "400px",
+          min_height = "375px",
           card_header("Peak Information"),
-          tableOutput("peak_info")
+          # tableOutput("peak_info")
+          conditionalPanel(
+            condition = "input.generate == 0",
+            div(
+              style = "color: #d9534f; font-weight: bold; border: 2px dashed #d9534f; padding: 15px; text-align: center; margin: 10px 0;",
+              "Press the 'Data generator' button to start the simulation."
+            )
+          ),
+          conditionalPanel(
+            condition = "input.generate > 0",
+            tableOutput("peak_info")
+          )
         )
       ),
       
@@ -254,230 +258,26 @@ ui <- page_navbar(
         p("This HPLC simulator allows you to explore how different parameters affect chromatographic separation."),
         p("The simulator models the effects of flow rate, column dimensions, mobile phase composition, detector settings, ionic strength, pH, and temperature on the resulting chromatogram."),
         p("Note: This is a simplified model for educational purposes and doesn't account for all factors that would affect a real HPLC separation.")
-        
-        # style = "height: 500px; overflow-y: auto;"
       )
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      # card(
-      #   height = 400,
-      #   DTOutput("history_peak_info")
-      #   # tableOutput("history_peak_info")
-      # )
-      
-      
-      # nav_spacer(),
-      # 
-      # card(
-      #   footer = TRUE,
-      #   "Note: This is a simplified model for educational purposes and doesn't account for all factors that would affect a real HPLC separation.",
-      #   # HTML((paste(" "," ","Giorgio Marrubini","email: giorgio.marrubini@unipv.it",
-      #   #             " ",
-      #   #             'Camillo Melzi','email: camillomelzi@gmail.com',sep="<br/>"))),
-      #   class = "text-center mt-4"
-      # )
-    )
+      )
     ),
-    
-    
-    
-    
     nav_panel(
       title = "Historical data",
       card(
         card_header(
           "Historical Data"
-
           ),
         # height = 400,
         DTOutput("history_peak_info")
-        
         # tableOutput("history_peak_info")
       ),
-      
-      
       layout_columns(
         downloadButton("downloadData", "Save historical data to Excel", 
                        class = "btn-success float-end"),
         actionButton(inputId = "reset_button", label = "Reset historical data")
-        
       )
       )
-    
-    
-    # # Stile CSS per abilitare lo scroll
-    # css <- "
-    # .scrollable-page {
-    #   height: 150vh; /* Altezza del viewport */
-    #   overflow-y: auto; /* Abilita lo scroll verticale */
-    #   padding-right: 10px; /* Opzionale, per evitare tagli */
-    # }
-    # "
-    # 
-    # ui <- tagList(
-    #   tags$head(
-    #     tags$style(HTML(css)) # Inserimento dello stile CSS
-    #   ),
-    #   ui
-    # )
-    
-    
-    
   )
-  
-
-  
-  
-  
-  
-  
-#   page_sidebar(
-#   title = "HPLC Simulator",
-#   
-#   # class = "scrollable-page", # Aggiunta classe CSS
-# 
-#     
-#     
-#     
-#     
-#     
-#     
-#   
-#   
-#   sidebar = sidebar(
-#     h4("Sample"),
-#     checkboxGroupInput("compounds", "Compounds",
-#                        choices = sapply(compounds_db, function(c) c$name),
-#                        selected = "Caffeine"),
-#     
-#     sliderInput("noise_level", "Noise Level", 
-#                 min = 0, max = 0.5, value = 0.01, step = 0.01),
-#     
-#     h4("Instrument Parameters"),
-#     numericInput("flow_rate", "Flow Rate (mL/min)", 
-#                  min = 0.1, max = 5, value = 1, step = 0.1),
-#     
-#     numericInput("injection_volume", "Injection Volume (μL)", 
-#                  min = 1, max = 100, value = 10, step = 1),
-#     
-#     selectInput("detection_wavelength", "Detection Wavelength", 
-#                 choices = c("210 nm", "254 nm", "280 nm"),
-#                 selected = "254 nm"),
-#     
-#     h4("Column Properties"),
-#     sliderInput("column_length", "Column Length (mm)", 
-#                 min = 50, max = 250, value = 150, step = 10),
-#     
-#     selectInput("column_diameter", "Column Diameter (mm)", 
-#                 choices = c(2.1, 3.0, 4.6), selected = 4.6),
-#     
-#     selectInput("particle_size", "Particle Size (μm)", 
-#                 choices = c(1.7, 3, 5), selected = 3),
-#     
-#     h4("Mobile Phase"),
-#     sliderInput("mobile_phase_composition", "Organic Phase (%)", 
-#                 min = 0, max = 100, value = 50, step = 5),
-#     
-#     sliderInput("ionic_strength", "Ionic Strength (mM)", 
-#                 min = 0, max = 50, value = 20, step = 1),
-#     
-#     sliderInput("ph", "pH", 
-#                 min = 5, max = 7, value = 6, step = 0.1),
-#     
-#     sliderInput("temperature", "Temperature (°C)", 
-#                 min = 20, max = 50, value = 30, step = 1),
-#     
-#     
-#     
-#     actionButton("generate", "Data generator", class = "btn-primary btn-lg w-100 mt-3"),
-#     downloadButton("downloadData", "Save historical data to Excel", 
-#                    class = "btn-success float-end"),
-#     actionButton(inputId = "reset_button", label = "Reset historical data")
-#   ),
-#   
-#   
-#   
-#   
-#   layout_columns(
-#     
-#     
-#     card(
-#       # min_height = "400px",
-#       card_header("Simulated Chromatogram"),
-#       plotOutput("chromatogram_plot", height = "400px")
-#       # style = "height: 500px; overflow-y: auto;"
-#     ),
-#     
-#     card(
-#       # min_height = "400px",
-#       card_header("Peak Information"),
-#       tableOutput("peak_info")
-#     )
-#   ),
-#   
-#   card(
-#     height = 200,
-#     card_header("Simulator Information"),
-#     p("This HPLC simulator allows you to explore how different parameters affect chromatographic separation."),
-#     p("The simulator models the effects of flow rate, column dimensions, mobile phase composition, detector settings, ionic strength, pH, and temperature on the resulting chromatogram."),
-#     p("Note: This is a simplified model for educational purposes and doesn't account for all factors that would affect a real HPLC separation.")
-# 
-#     # style = "height: 500px; overflow-y: auto;"
-#     ),
-# 
-#   
-#   
-#   
-#   
-#   
-#   
-#   
-# 
-#   card(
-#     height = 400,
-#     DTOutput("history_peak_info")
-#     # tableOutput("history_peak_info")
-#   )
-#   
-#   
-#   # nav_spacer(),
-#   # 
-#   # card(
-#   #   footer = TRUE,
-#   #   "Note: This is a simplified model for educational purposes and doesn't account for all factors that would affect a real HPLC separation.",
-#   #   # HTML((paste(" "," ","Giorgio Marrubini","email: giorgio.marrubini@unipv.it",
-#   #   #             " ",
-#   #   #             'Camillo Melzi','email: camillomelzi@gmail.com',sep="<br/>"))),
-#   #   class = "text-center mt-4"
-#   # )
-# )
-# 
-# 
-# 
-# # # Stile CSS per abilitare lo scroll
-# # css <- "
-# # .scrollable-page {
-# #   height: 150vh; /* Altezza del viewport */
-# #   overflow-y: auto; /* Abilita lo scroll verticale */
-# #   padding-right: 10px; /* Opzionale, per evitare tagli */
-# # }
-# # "
-# # 
-# # ui <- tagList(
-# #   tags$head(
-# #     tags$style(HTML(css)) # Inserimento dello stile CSS
-# #   ),
-# #   ui
-# # )
-
-
 
 
 server <- function(input, output, session) {
@@ -486,8 +286,6 @@ server <- function(input, output, session) {
   selected_compounds <- eventReactive(input$generate,{
     compounds_db[match(input$compounds, sapply(compounds_db, function(c) c$name))]
   })
-  
-
   
   # Simulate chromatogram when inputs change
   chromatogram_data <- eventReactive(input$generate,{
@@ -508,12 +306,6 @@ server <- function(input, output, session) {
       temperature = input$temperature
     )
   })
-  
-  
-
-
-  
-  
   
   # Plot chromatogram
   output$chromatogram_plot <- renderPlot({
@@ -537,6 +329,7 @@ server <- function(input, output, session) {
   
   # Generate peak information table
   output$peak_info <- renderTable({
+    
     req(length(input$compounds) > 0)
     
     compounds <- selected_compounds()
@@ -552,15 +345,6 @@ server <- function(input, output, session) {
       Compound = sapply(compounds, function(c) c$name),
       stringsAsFactors = FALSE
     )
-    # 
-    # # Estimate retention times
-    # result$EstimatedRT <- sapply(seq_along(compounds), function(i) {
-    #   base_rt <- compounds[[i]]$rt
-    #   rt_adjusted <- base_rt * (1 / input$flow_rate) * 1.5
-    #   rt_adjusted <- rt_adjusted * (input$column_length / 150)
-    #   rt_adjusted <- rt_adjusted * (1 - (input$mobile_phase_composition / 100) * compounds[[i]]$solvent_sensitivity)
-    #   round(rt_adjusted, 2)
-    # })
     
     result$RT <- sprintf("%.3f",round(RTs,3))
     result$Height <- sprintf("%.3f",round(Heights,3))
@@ -571,20 +355,8 @@ server <- function(input, output, session) {
     # Add peak area
     result$Area <- sprintf("%.3f",round(Areas, 3))
     
-    # # Add relative response
-    # result$RelativeResponse <- sapply(seq_along(compounds), function(i) {
-    #   round(compounds[[i]]$response_factors[input$detection_wavelength], 2)
-    # })
-    
     result
-    
   })
-  
-  
-  
-  
-  
-  
 
   history_data <- reactiveVal(
     data.frame(
@@ -612,7 +384,6 @@ server <- function(input, output, session) {
     )
   )
   
-  
   observeEvent(input$generate, {
     req(length(input$compounds) > 0)
     
@@ -629,16 +400,7 @@ server <- function(input, output, session) {
       Compound = sapply(compounds, function(c) c$name),
       stringsAsFactors = FALSE
     )
-    #
-    # # Estimate retention times
-    # result$EstimatedRT <- sapply(seq_along(compounds), function(i) {
-    #   base_rt <- compounds[[i]]$rt
-    #   rt_adjusted <- base_rt * (1 / input$flow_rate) * 1.5
-    #   rt_adjusted <- rt_adjusted * (input$column_length / 150)
-    #   rt_adjusted <- rt_adjusted * (1 - (input$mobile_phase_composition / 100) * compounds[[i]]$solvent_sensitivity)
-    #   round(rt_adjusted, 2)
-    # })
-    
+
     current_data <- history_data()
     
     # Calculate experiment number
@@ -670,73 +432,10 @@ server <- function(input, output, session) {
     
     # Add peak area
     result$Area <- sprintf("%.3f",round(Areas, 3))
-    
-    # # Add relative response
-    # result$RelativeResponse <- sapply(seq_along(compounds), function(i) {
-    #   round(compounds[[i]]$response_factors[input$detection_wavelength], 2)
-    # })
-    
 
     result <- result[, c(2, 1, 3:ncol(result))]
-    
-    
-    
-    
     history_data(rbind(current_data,result))
   })
-
-  
-
-
-  # output$history_peak_info <- renderTable({
-  #   # req(length(input$compounds) > 0)
-  #   #
-  #   # compounds <- selected_compounds()
-  #   #
-  #   # chromatogram_results <- chromatogram_data()
-  #   # RTs <-  chromatogram_results$RTs
-  #   # Heights  <- chromatogram_results$Heights
-  #   # Widths <- chromatogram_results$Widths
-  #   # Areas <- chromatogram_results$Areas
-  #   #
-  #   # # Calculate adjusted retention times
-  #   # result <- data.frame(
-  #   #   Compound = sapply(compounds, function(c) c$name),
-  #   #   stringsAsFactors = FALSE
-  #   # )
-  #   # #
-  #   # # # Estimate retention times
-  #   # # result$EstimatedRT <- sapply(seq_along(compounds), function(i) {
-  #   # #   base_rt <- compounds[[i]]$rt
-  #   # #   rt_adjusted <- base_rt * (1 / input$flow_rate) * 1.5
-  #   # #   rt_adjusted <- rt_adjusted * (input$column_length / 150)
-  #   # #   rt_adjusted <- rt_adjusted * (1 - (input$mobile_phase_composition / 100) * compounds[[i]]$solvent_sensitivity)
-  #   # #   round(rt_adjusted, 2)
-  #   # # })
-  #   #
-  #   # result$RT <- round(RTs,3)
-  #   # result$Height <- round(Heights,3)
-  #   #
-  #   # # Add peak width
-  #   # result$Width <- round(Widths, 3)
-  #   #
-  #   # # Add peak area
-  #   # result$Area <- round(Areas, 3)
-  #   #
-  #   # # # Add relative response
-  #   # # result$RelativeResponse <- sapply(seq_along(compounds), function(i) {
-  #   # #   round(compounds[[i]]$response_factors[input$detection_wavelength], 2)
-  #   # # })
-  #   #
-  #   # result
-  #   #
-  #   # current_data <- history_data()
-  #   # history_data(rbind(result, current_data))
-  # 
-  # 
-  #   history_data()
-  # 
-  # })
 
   # Render history table
   output$history_peak_info  <- renderDT({
@@ -764,7 +463,6 @@ server <- function(input, output, session) {
         fontWeight = "bold"
       )
   })
-  
   
   # Download handler for Excel export
   output$downloadData <- downloadHandler(
@@ -802,8 +500,6 @@ server <- function(input, output, session) {
       saveWorkbook(wb, file, overwrite = TRUE)
     }
   )
-
-
   
   observeEvent(input$reset_button, {
     # Restablece el reactiveVal a su valor inicial
@@ -831,8 +527,6 @@ server <- function(input, output, session) {
       Area = character(0)
     ))
   })
-  
-  
 }
 
 # Run the app
