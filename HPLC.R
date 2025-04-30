@@ -213,7 +213,7 @@ ui <- page_navbar(
   
       ),
       
-      layout_columns(
+      # layout_columns(
         card(
           min_height = "375px",
           card_header("Simulated Chromatogram"),
@@ -250,17 +250,22 @@ ui <- page_navbar(
             tableOutput("peak_info")
           )
         )
-      ),
+      # )
       
-      card(
-        height = 200,
-        card_header("Simulator Information"),
-        p("This HPLC simulator allows you to explore how different parameters affect chromatographic separation."),
-        p("The simulator models the effects of flow rate, column dimensions, mobile phase composition, detector settings, ionic strength, pH, and temperature on the resulting chromatogram."),
-        p("Note: This is a simplified model for educational purposes and doesn't account for all factors that would affect a real HPLC separation.")
-      )
+      # card(
+      #   height = 200,
+      #   card_header("Simulator Information"),
+      #   p("This HPLC simulator allows you to explore how different parameters affect chromatographic separation."),
+      #   p("The simulator models the effects of flow rate, column dimensions, mobile phase composition, detector settings, ionic strength, pH, and temperature on the resulting chromatogram."),
+      #   p("Note: This is a simplified model for educational purposes and doesn't account for all factors that would affect a real HPLC separation.")
+      # )
       )
     ),
+  
+  
+  
+  
+  
     nav_panel(
       title = "Historical data",
       card(
@@ -276,7 +281,22 @@ ui <- page_navbar(
                        class = "btn-success float-end"),
         actionButton(inputId = "reset_button", label = "Reset historical data")
       )
-      )
+      ),
+  
+  
+  nav_panel(
+    title = "About",
+    card(
+      height = 200,
+      card_header("Simulator Information"),
+      p("This HPLC simulator allows you to explore how different parameters affect chromatographic separation."),
+      p("The simulator models the effects of flow rate, column dimensions, mobile phase composition, detector settings, ionic strength, pH, and temperature on the resulting chromatogram."),
+      p("Note: This is a simplified model for educational purposes and doesn't account for all factors that would affect a real HPLC separation.")
+    )
+  )
+  
+  
+  
   )
 
 
@@ -526,6 +546,7 @@ server <- function(input, output, session) {
       Width = numeric(0),
       Area = character(0)
     ))
+    # showNotification("Historical data has been reset", type = "message")
   })
 }
 
