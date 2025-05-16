@@ -99,13 +99,13 @@ Bassa temperatura e bassa concentrazione di acido: tempi lunghi, API che si degr
           title = "Quantità residua di API (%, p/p)",
           value = textOutput(ns("response1")),
           showcase = bsicons::bs_icon("clipboard-data"),
-          theme = "primary"
+          theme = "warning"
         ),
         value_box(
           title = "Bilancio di massa (%, p/p)",
           value = textOutput(ns("response2")),
           showcase = bsicons::bs_icon("clipboard-data"),
-          theme = "success"
+          theme = "danger"
         )
       )
     ),
