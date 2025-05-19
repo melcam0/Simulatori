@@ -12,7 +12,6 @@ library(shiny)
 library(bslib)
 library(bsicons)
 library(shinyWidgets)
-library(bslib)
 library(dplyr)
 library(DT)
 library(openxlsx)
@@ -26,7 +25,7 @@ options(shiny.maxRequestSize = 30 * 1024 ^ 2)
 
 # Define your primary color
 my_primary_color <-  "#DF6919"  # This is a blue-violet color
-
+theme <- bs_theme()
 
 
 
