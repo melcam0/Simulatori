@@ -25,7 +25,7 @@ options(shiny.maxRequestSize = 30 * 1024 ^ 2)
 
 
 # Define your primary color
-my_primary_color <-  "#A0A0A0"  # This is a blue-violet color
+my_primary_color <-  "#DF6919"  # This is a blue-violet color
 
 
 
@@ -37,44 +37,28 @@ source("ReazDegradForzataModule.R")
 # Main application UI
 ui <- page_navbar(
   
-  # # 
-  # theme = bs_theme_update(theme,
-  #                         # preset = "Flatly",
-  #   version = 5, # Utilizziamo Bootstrap 5
-  #   bootswatch = "flatly", # Tema base moderno
-  #   # primary = "#4CAF50", # Colore primario
-  #   secondary = "#FF5722", # Colore secondario
-  #   success = "#8BC34A", # Colore per successi
-  #   font_scale = 1.2, # Scala dei caratteri
-  #   base_font = font_google("Roboto"), # Font moderno
-  #   heading_font = font_google("Montserrat"), # Font per intestazioni
-  #   
-  #   fg = "rgb(229, 0, 0)", primary = "#C2007C", 
-  #   bg = "#ffffff"
-  # ),
-  
+  theme = bs_theme_update(theme, preset = "superhero"),
+ 
+# Add custom CSS to ensure sliders maintain the primary color
+tags$head(
+  tags$style(HTML(paste0("
+    .irs-bar, .irs-bar-edge, .irs-single, .irs-from, .irs-to {
+      background: ", my_primary_color, " !important;
+      border-color: ", my_primary_color, " !important;
+    }
+    .irs-handle {
+      border-color: ", my_primary_color, " !important;
+       background: ", my_primary_color, " !important;
+    }
 
-  # # Add custom CSS to ensure sliders maintain the primary color
-  # tags$head(
-  #   tags$style(HTML(paste0("
-  #     .irs-bar, .irs-bar-edge, .irs-single, .irs-from, .irs-to {
-  #       background: ", my_primary_color, " !important;
-  #       border-color: ", my_primary_color, " !important;
-  #     }
-  #     .irs-handle {
-  #       border-color: ", my_primary_color, " !important;
-  #     }
-  # 
-  #     /* Additional styling for sidebar elements */
-  #     .sidebar, .sidebar-content, .sidebar .form-group, .sidebar .control-label {
-  #       --bs-primary: ", my_primary_color, " !important;
-  #       --bs-primary-rgb: ", paste(as.vector(col2rgb(my_primary_color)), collapse = ","), " !important;
-  #     }
-  #   ")))
-  # ),
-  
-  
-  
+    /* Additional styling for sidebar elements */
+    .sidebar, .sidebar-content, .sidebar .form-group, .sidebar .control-label {
+      --bs-primary: ", my_primary_color, " !important;
+      --bs-primary-rgb: ", paste(as.vector(col2rgb(my_primary_color)), collapse = ","), " !important;
+    }
+  ")))
+),
+
   title = "Simulatori",
 
 nav_panel(
@@ -109,17 +93,13 @@ nav_panel(
       )
     )
   ),
-
   
   card_footer(
     style = "padding: 8px; margin-top: auto; display: flex; justify-content: space-between;", 
-    
     # Elemento a sinistra
     span(""),
-    
     # Elemento al centro
     span(style = "text-align: center;", "Version 1.1"),
-
     # Elemento a destra
     span("")
   )
@@ -148,7 +128,9 @@ nav_panel(
 # Main application server logic
 server <- function(input, output, session) {
   # Call the module server functions with their respective IDs
-  bs_themer()
+  
+  # per personalizzare il tema
+  # bs_themer()
   
   OralDisintTablet_server("odt")
   ReazDegradForzataModule_server("rdf")

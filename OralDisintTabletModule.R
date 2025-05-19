@@ -85,13 +85,15 @@ Standard Tablet Disintegration: For standard tablets, the European Medicines Age
           title = "Disintegration time (min)",
           value = textOutput(ns("response1")),
           showcase = bsicons::bs_icon("clipboard-data"),
-          theme = "primary"
+          # theme = "primary"
+          style = "background-color:rgb(249,185,40); color: white;" 
         ),
         value_box(
           title = "Hardness (N)",
           value = textOutput(ns("response2")),
           showcase = bsicons::bs_icon("clipboard-data"),
-          theme = "success"
+          # theme = "success"
+          style = "background-color:#40D540; color: white;" # Azzurro, testo bianco
         )
       )
     ),
@@ -100,7 +102,7 @@ Standard Tablet Disintegration: For standard tablets, the European Medicines Age
       card_header(
         "Historical Data",
         downloadButton(ns("downloadData"), "Save to Excel", 
-                       class = "btn-success float-end")
+                       class = "btn-primary float-end")
       ),
       DTOutput(ns("history_table"))
     )
@@ -247,13 +249,15 @@ OralDisintTablet_server <- function(id) {
                 rownames = FALSE)%>%
         formatStyle(
           columns = 7,  
-          backgroundColor = bslib::bs_get_variables(bslib::bs_theme(), "primary"),
+          # backgroundColor = bslib::bs_get_variables(bslib::bs_theme(), "primary"),
+          backgroundColor = "rgb(249,185,40)",
           color = "white",
           fontWeight = "bold"
         )%>%
         formatStyle(
           columns = 8,  
-          backgroundColor = bslib::bs_get_variables(bslib::bs_theme(), "success"),
+          # backgroundColor = bslib::bs_get_variables(bslib::bs_theme(), "success"),
+          backgroundColor = "#40D540",
           color = "white",
           fontWeight = "bold"
         )

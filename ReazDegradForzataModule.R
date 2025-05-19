@@ -99,13 +99,16 @@ Bassa temperatura e bassa concentrazione di acido: tempi lunghi, API che si degr
           title = "Quantità residua di API (%, p/p)",
           value = textOutput(ns("response1")),
           showcase = bsicons::bs_icon("clipboard-data"),
-          theme = "warning"
+          # theme = "warning"
+          style = "background-color:#7777F9; color: white;" # Blu, testo bianco
         ),
         value_box(
           title = "Bilancio di massa (%, p/p)",
           value = textOutput(ns("response2")),
           showcase = bsicons::bs_icon("clipboard-data"),
-          theme = "danger"
+          # theme = "danger"
+          style = "background-color:#E55DBC; color: white;" # Rosso/viola, testo bianco
+          
         )
       )
     ),
@@ -115,7 +118,7 @@ Bassa temperatura e bassa concentrazione di acido: tempi lunghi, API che si degr
       card_header(
         "Storico dei Dati",
         downloadButton(ns("downloadData"), "Salva in Excel", 
-                       class = "btn-success float-end")
+                       class = "btn-primary float-end")
       ),
       DTOutput(ns("history_table"))
     )
@@ -387,13 +390,15 @@ ReazDegradForzataModule_server <- function(id) {
                 rownames = FALSE)%>%
         formatStyle(
           columns = 11,  
-          backgroundColor = bslib::bs_get_variables(bslib::bs_theme(), "primary"),
+          # backgroundColor = bslib::bs_get_variables(bslib::bs_theme(), "primary"),
+          backgroundColor = "#7777F9",
           color = "white",
           fontWeight = "bold"
         )%>%
         formatStyle(
           columns = 12,  
-          backgroundColor = bslib::bs_get_variables(bslib::bs_theme(), "success"),
+          # backgroundColor = bslib::bs_get_variables(bslib::bs_theme(), "success"),
+          backgroundColor = "#E55DBC",
           color = "white",
           fontWeight = "bold"
         )
