@@ -407,7 +407,7 @@ ReazDegradForzataModule_server <- function(id) {
     # Download handler for Excel export
     output$downloadData <- downloadHandler(
       filename = function() {
-        paste("dati-sperimentali-", format(Sys.time(), "%Y-%m-%d-%H%M%S"), ".xlsx", sep = "")
+        paste("Degrad_Simulation_", format(Sys.time(), "%Y-%m-%d-%H%M%S"), ".xlsx", sep = "")
       },
       content = function(file) {
         # Only proceed if there's data to download
@@ -431,7 +431,19 @@ ReazDegradForzataModule_server <- function(id) {
           border = "TopBottom", 
           borderColour = "#000000"
         )
+        
+        # Stile intestazione  risposte arancione
+        headerRisposteStyle <- createStyle(
+          fontColour = "#FFFFFF",   # testo bianco per maggiore leggibilità
+          fgFill = "#E26B0A",       # arancione
+          halign = "center",
+          textDecoration = "bold"
+        )
+        
         addStyle(wb, "Dati Sperimentali", headerStyle, rows = 1, cols = 1:ncol(history_data()))
+        
+        # Applica lo stile risposte" alle ultime 4 intestazioni
+        addStyle(wb, "Exp_data", headerRisposteStyle, rows = 1, cols = (ncol(history_data())-1):ncol(history_data()))
         
         # Auto-adjust column widths
         setColWidths(wb, "Dati Sperimentali", cols = 1:ncol(history_data()), widths = "auto")

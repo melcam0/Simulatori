@@ -93,8 +93,8 @@ Standard Tablet Disintegration: For standard tablets, the European Medicines Age
           value = textOutput(ns("response2")),
           showcase = bsicons::bs_icon("clipboard-data"),
           # theme = "success"
-          style = "background-color:#40D540; color: white;" # Azzurro, testo bianco
-        )
+          style = "background-color:#3ECB3E; color: white;" 
+          #40D540
       )
     ),
     card(
@@ -257,7 +257,7 @@ OralDisintTablet_server <- function(id) {
         formatStyle(
           columns = 8,  
           # backgroundColor = bslib::bs_get_variables(bslib::bs_theme(), "success"),
-          backgroundColor = "#40D540",
+          backgroundColor = "#3ECB3E",
           color = "white",
           fontWeight = "bold"
         )
@@ -266,7 +266,7 @@ OralDisintTablet_server <- function(id) {
     # Download handler for Excel export
     output$downloadData <- downloadHandler(
       filename = function() {
-        paste("Exp_data-", format(Sys.time(), "%Y-%m-%d-%H%M%S"), ".xlsx", sep = "")
+        paste("Disint_Simulation_", format(Sys.time(), "%Y-%m-%d-%H%M%S"), ".xlsx", sep = "")
       },
       content = function(file) {
         # Only proceed if there's data to download
@@ -290,7 +290,21 @@ OralDisintTablet_server <- function(id) {
           border = "TopBottom", 
           borderColour = "#000000"
         )
+        
+        
+        # Stile intestazione  risposte arancione
+        headerRisposteStyle <- createStyle(
+          fontColour = "#FFFFFF",   # testo bianco per maggiore leggibilità
+          fgFill = "#E26B0A",       # arancione
+          halign = "center",
+          textDecoration = "bold"
+        )
+        
         addStyle(wb, "Exp_data", headerStyle, rows = 1, cols = 1:ncol(history_data()))
+        
+        
+        # Applica lo stile risposte" alle ultime 4 intestazioni
+        addStyle(wb, "Exp_data", headerRisposteStyle, rows = 1, cols = (ncol(history_data())-1):ncol(history_data()))
         
         # Auto-adjust column widths
         setColWidths(wb, "Exp_data", cols = 1:ncol(history_data()), widths = "auto")
