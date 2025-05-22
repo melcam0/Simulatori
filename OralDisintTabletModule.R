@@ -33,7 +33,7 @@ OralDisintTablet_ui <- function(id) {
           selected = "A"
         )
       ),
-      actionButton(ns("generate"), "Data generator", class = "btn-primary btn-lg w-100 mt-3")
+      actionButton(ns("generate"), "Generate Data", class = "btn-primary btn-lg w-100 mt-3")
     ),
     card(
       min_height = "250px",

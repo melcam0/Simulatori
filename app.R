@@ -58,7 +58,7 @@ tags$head(
   ")))
 ),
 
-  title = "Simulatori",
+  title = "Simulators",
 
 nav_panel(
   title = "About",
@@ -115,7 +115,7 @@ nav_panel(
   ),
   
   nav_panel(
-    title = "ReazDegradForzata",
+    title = "ForcDegradReact",
     ReazDegradForzataModule_ui("rdf")
   )
 

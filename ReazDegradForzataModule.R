@@ -2,112 +2,112 @@ ReazDegradForzataModule_ui <- function(id) {
   ns <- NS(id)
   
   page_sidebar(
-    title = "Reazione di degradazione forzata",
+    title = "Forced Degradation Reaction",
     sidebar = sidebar(
       # Factor 1: Temperature
       card(
-        sliderInput(ns("x1"), "Temperatura di reazione", 
+        sliderInput(ns("x1"), "Reaction Temperature", 
                     value = 65, min = 30, max = 100, step = 1)
       ),
       
-      # Factor 2: Concentrazione acido
+      # Factor 2: Acid concentration
       card(
-        sliderInput(ns("x2"), "Concentrazione dell'acido (N)", 
+        sliderInput(ns("x2"), "Acid concentration (N)", 
                     min = 0.1, max = 5.9, value = 3, step = 0.1)
       ),
       
-      # Factor 3: Acido
+      # Factor 3: Acid
       card(
         sliderTextInput(
           inputId = ns("x3"),
-          label = "Tipo di acido (HCl, H2SO4):",
+          label = "Type of acid (HCl, H2SO4):",
           choices = c("HCl", "H2SO4"),
           selected = "HCl"
         )
       ),
       
-      # Factor 4: Concentrazione API
+      # Factor 4: API concentration
       card(
-        sliderInput(ns("x4"), "Concentrazione API (mg/mL):", 
+        sliderInput(ns("x4"), "API concentration (mg/mL):", 
                     min = 0.1, max = 19.9, value = 10, step = 0.1)
       ),
       
-      # Factor 5: Tempo di reazione (h)
+      # Factor 5: Reaction time (h)
       card(
-        sliderInput(ns("x5"), "Tempo di reazione (h):", 
+        sliderInput(ns("x5"), "Reaction time (h):", 
                     min = 0.25, max = 24.75, value = 12.5, step = 0.1)
       ),
       
-      # Factor 6: Volume di reazione (mL)
+      # Factor 6: Reaction volume (mL)
       card(
-        sliderInput(ns("x6"), "Volume di reazione (mL):", 
+        sliderInput(ns("x6"), "Reaction volume (mL):", 
                     min = 5, max = 15, value = 10, step = 1)
       ),
       
-      # Factor 7: Modalità di riscaldamento (piastra, microonde)
+      # Factor 7: Heating mode (plate, microwave)
       card(
         sliderTextInput(
           inputId = ns("x7"),
-          label = "Modalità di riscaldamento (piastra, microonde):",
+          label = "Heating mode (plate, microwave):",
           choices = c("p", "mw"),
           selected = "p"
         )
       ),
       
-      # Factor 8: Agitazione meccanica
+      # Factor 8: Mechanical stirring
       card(
         sliderTextInput(
           inputId = ns("x8"),
-          label = "Agitazione meccanica:",
-          choices = c("no", "si"),
+          label = "Mechanical stirring:",
+          choices = c("no", "yes"),
           selected = "no"
         )
       ),
       
-      # Factor 9: Quenching della reazione (azoto liquido)
+      # Factor 9: Reaction quenching (liquid nitrogen)
       card(
         sliderTextInput(
           inputId = ns("x9"),
-          label = "Quenching della reazione (azoto liquido):",
-          choices = c("no", "si"),
+          label = "Reaction quenching (liquid nitrogen):",
+          choices = c("no", "yes"),
           selected = "no"
         )
       ),
       
       # Generate data button
-      actionButton(ns("generate"), "Genera Dati", class = "btn-primary btn-lg w-100 mt-3")
+      actionButton(ns("generate"), "Generate Data", class = "btn-primary btn-lg w-100 mt-3")
     ),
     
     card(
       min_height = "230px",
-      card_header("Scopo dello studio"),
+      card_header("Study Purpose"),
       div(
         style = "white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word; max-width: 100%;",
-        "Individuare le condizioni di reazione che degradino l'API tra il 5 e il 20% - ossia che lascino immodificato l'API in % compresa tra il 95 e l'80%. Range percentuale ottimale di degradazione 10-15%. Il bilancio di massa inoltre deve risultare compreso strettamente tra 97 e 103%.
-    
-Tempo di reazione e temperatura più basse possibili, nessun workup della soluzione dei prodotti (no mw, no azoto liq.)
-Alta temperatura alta concentrazione di acido % bassa e MB < 97% 
-Bassa temperatura e bassa concentrazione di acido: tempi lunghi, API che si degrada in modo lineare, MB costante ok quasi sempre."
+        "Identify the reaction conditions that degrade the API between 5 and 20% - that is, that leave the API unchanged in % between 95 and 80%. Optimal degradation percentage range [...]
+
+Lowest possible reaction time and temperature, no workup of the product solution (no mw, no liquid nitrogen).
+High temperature, high acid concentration: low %, MB < 97%
+Low temperature and low acid concentration: long times, API degrades linearly, MB almost always ok and constant."
       )
     ),
     
     card(
-      card_header("Risposte"),
+      card_header("Responses"),
       min_height = "200px",
       layout_columns(
         value_box(
-          title = "Quantità residua di API (%, p/p)",
+          title = "Residual API amount (%, w/w)",
           value = textOutput(ns("response1")),
           showcase = bsicons::bs_icon("clipboard-data"),
           # theme = "warning"
-          style = "background-color:#7777F9; color: white;" # Blu, testo bianco
+          style = "background-color:#7777F9; color: white;" # Blue, white text
         ),
         value_box(
-          title = "Bilancio di massa (%, p/p)",
+          title = "Mass balance (%, w/w)",
           value = textOutput(ns("response2")),
           showcase = bsicons::bs_icon("clipboard-data"),
           # theme = "danger"
-          style = "background-color:#E55DBC; color: white;" # Rosso/viola, testo bianco
+          style = "background-color:#E55DBC; color: white;" # Red/violet, white text
           
         )
       )
@@ -116,8 +116,8 @@ Bassa temperatura e bassa concentrazione di acido: tempi lunghi, API che si degr
     card(
       min_height = "500px",
       card_header(
-        "Storico dei Dati",
-        downloadButton(ns("downloadData"), "Salva in Excel", 
+        "Data History",
+        downloadButton(ns("downloadData"), "Save to Excel", 
                        class = "btn-primary float-end")
       ),
       DTOutput(ns("history_table"))
@@ -136,25 +136,25 @@ ReazDegradForzataModule_server <- function(id) {
       data.frame(
         Exp = numeric(0),
         
-        Temperatura = numeric(0),
-        Concentrazione_acido = numeric(0),
-        Acido = character(0),
-        Concentrazione_API = numeric(0),
-        Tempo = numeric(0),
+        Temperature = numeric(0),
+        Acid_concentration = numeric(0),
+        Acid = character(0),
+        API_concentration = numeric(0),
+        Time = numeric(0),
         Volume = numeric(0),
-        Riscaldamento = character(0),
-        Agitazione = character(0),
+        Heating = character(0),
+        Stirring = character(0),
         Quenching = character(0),
         
-        Qta_API = numeric(0),
-        Bilancio_massa = numeric(0)
+        API_amount = numeric(0),
+        Mass_balance = numeric(0)
       )
     )
     
     
     
     
-    # da qui generare modello -------------------------------------------------
+    # model generation -------------------------------------------------
     
     # Generate responses when button is clicked
     observeEvent(input$generate, {
@@ -163,7 +163,7 @@ ReazDegradForzataModule_server <- function(id) {
       # Each factor contributes to the responses in different ways
       
       
-      # effetti per le variabili codificati, def variabili non codificate
+      # effects for the variables encoded, def non-encoded variables
       x1 <- (input$x1 - 65)/35 
       x2 <- (input$x2 - 3)/2.9
       x3 <- switch(input$x3,
@@ -177,10 +177,10 @@ ReazDegradForzataModule_server <- function(id) {
                    "mw" = 1)
       x8 <- switch(input$x8,
                    "no" = -1,
-                   "si" = 1)
+                   "yes" = 1)
       x9 <- switch(input$x9,
                    "no" = -1,
-                   "si" = 1) 
+                   "yes" = 1) 
       
       
       # Factor effects for Response 1 
@@ -358,18 +358,18 @@ ReazDegradForzataModule_server <- function(id) {
       new_row <- data.frame(
         Exp = exp_number,  # Add the experiment counter
         
-        Temperatura = input$x1,
-        Conc_acido = input$x2,
-        Acido = input$x3,
-        Conc_API = input$x4,
-        Tempo = input$x5,
+        Temperature = input$x1,
+        Acid_concentration = input$x2,
+        Acid = input$x3,
+        API_concentration = input$x4,
+        Time = input$x5,
         Volume = input$x6,
-        Riscaldamento = input$x7,
-        Agitazione = input$x8,
+        Heating = input$x7,
+        Stirring = input$x8,
         Quenching = input$x9,
         
-        Qta_API = format(round(r1, 1), nsmall = 1),
-        Bilancio_massa = format(round(r2, 1), nsmall = 1)
+        API_amount = format(round(r1, 1), nsmall = 1),
+        Mass_balance = format(round(r2, 1), nsmall = 1)
       )
       
       history_data(rbind(new_row, current_data))
@@ -383,7 +383,7 @@ ReazDegradForzataModule_server <- function(id) {
                                autoWidth = TRUE,
                                scrollX = TRUE,
                                order = list(
-                                 list(0, 'desc')),  # Ordina per la colonna Exp (indice 0) in ordine discendente
+                                 list(0, 'desc')),  # Sort by column Exp (index 0) in descending order
                                columnDefs = list(
                                  list(className = 'dt-center', targets = "_all")
                                )),
@@ -432,17 +432,17 @@ ReazDegradForzataModule_server <- function(id) {
           borderColour = "#000000"
         )
         
-        # Stile intestazione  risposte arancione
+        # Orange style for responses header
         headerRisposteStyle <- createStyle(
-          fontColour = "#FFFFFF",   # testo bianco per maggiore leggibilità
-          fgFill = "#E26B0A",       # arancione
+          fontColour = "#FFFFFF",   # white text for better readability
+          fgFill = "#E26B0A",       # orange
           halign = "center",
           textDecoration = "bold"
         )
         
         addStyle(wb, "Exp_data", headerStyle, rows = 1, cols = 1:ncol(history_data()))
         
-        # Applica lo stile risposte" alle ultime 4 intestazioni
+        # Apply the "responses" style to the last 4 headers
         addStyle(wb, "Exp_data", headerRisposteStyle, rows = 1, cols = (ncol(history_data())-1):ncol(history_data()))
         
         # Auto-adjust column widths
