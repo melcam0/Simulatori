@@ -417,10 +417,10 @@ ReazDegradForzataModule_server <- function(id) {
         wb <- createWorkbook()
         
         # Add a worksheet
-        addWorksheet(wb, "Dati Sperimentali")
+        addWorksheet(wb, "Exp_data")
         
         # Write the data to the worksheet
-        writeData(wb, "Dati Sperimentali", history_data())
+        writeData(wb, "Exp_data", history_data())
         
         # Style the header row
         headerStyle <- createStyle(
@@ -440,13 +440,13 @@ ReazDegradForzataModule_server <- function(id) {
           textDecoration = "bold"
         )
         
-        addStyle(wb, "Dati Sperimentali", headerStyle, rows = 1, cols = 1:ncol(history_data()))
+        addStyle(wb, "Exp_data", headerStyle, rows = 1, cols = 1:ncol(history_data()))
         
         # Applica lo stile risposte" alle ultime 4 intestazioni
         addStyle(wb, "Exp_data", headerRisposteStyle, rows = 1, cols = (ncol(history_data())-1):ncol(history_data()))
         
         # Auto-adjust column widths
-        setColWidths(wb, "Dati Sperimentali", cols = 1:ncol(history_data()), widths = "auto")
+        setColWidths(wb, "Exp_data", cols = 1:ncol(history_data()), widths = "auto")
         
         # Save the workbook
         saveWorkbook(wb, file, overwrite = TRUE)

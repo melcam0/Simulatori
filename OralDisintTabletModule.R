@@ -95,6 +95,7 @@ Standard Tablet Disintegration: For standard tablets, the European Medicines Age
           # theme = "success"
           style = "background-color:#3ECB3E; color: white;" 
           #40D540
+        )
       )
     ),
     card(
