@@ -88,7 +88,8 @@ nav_panel(
       card(
         card_header("Contact"),
         p("For questions or feedback about these simulators, please contact us."),
-        p("Email: example@example.com")
+        p("Email: giorgio.marrubini@unipv.it"),
+        p("Email: camillomelzi@gmail.com")
       )
     )
   ),
